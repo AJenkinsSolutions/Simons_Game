@@ -15,21 +15,17 @@ function startGame(){
             gameOn = true;
             console.log(gameOn);
             //Change title
-            $('#level-title').text('level:' + level);
-            
-            //playsound
+            $('#level-title').text('level:' + (level + 1));
+            //current tile string
             let currentTile = pattern[level];
-            console.log(currentTile);
-            let currentSound = new Audio('sounds/'+ currentTile+'.mp3');
-            currentSound.play();
-            //Animate
-            $('#' + currentTile).addClass('pressed');
-            setTimeout( ()=> {
-                $('#' + currentTile).removeClass('pressed');
-                
-            }, 100);
+            //playsound
+            playSound(currentTile);
             
-
+            //Animate
+            animateButton(currentTile);
+            
+            // did you click the correct tile or any other tile ?   
+            playClickSound();
         }   
         
     });
@@ -61,6 +57,28 @@ function GeneratePattern(size){
     console.log('debug patten Array:', pattern);
     }
 
+function playSound(tile){
+    //takes input of current tile 
+            let currentSound = new Audio('sounds/'+ tile+'.mp3');
+            currentSound.play();
+}
+function animateButton(tile){
+    $('#' + tile).addClass('pressed');
+            setTimeout( ()=> {
+                $('#' + tile).removeClass('pressed');
+            }, 100);
+
+}
+function playClickSound(){
+
+    $(document).click( e => {
+        let target = e.target.id;
+        let targetSound = new Audio('sounds/'+target+'.mp3')
+        targetSound.play();
+        animateButton(target);
+    })
+    
+}
 
 
 GeneratePattern(5);
