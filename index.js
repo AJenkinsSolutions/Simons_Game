@@ -1,19 +1,28 @@
 
+//Game Active
+let gameOn = false;
+function startGame(){
+    // detect user key press
+    // then toggle our game state to True
+    $(document).keydown( e => { 
+        if(e){
+            gameOn = true;
+            console.log(gameOn);
+        } 
+    
+    } );
+    
+}
 
 
+//Tiles Choices
 let tiles = ['green', 'red', 'yellow', 'blue'];
-
-
-
-// gunna have a random sequence populated by our tile array
+// Random pattern of tiles
 let pattern = [];
-
 // Generate tile pattern 
 function GeneratePattern(size){
 
 for(let i=0; i<size; i++){
-
-
 //Chose random index
 let choiceIndex = Math.floor(Math.random() * tiles.length);
 //Get index tile 
@@ -34,9 +43,23 @@ switch (choiceIndex) {
     default:
         break;
 }
-console.log('debug', pattern);
+}
+console.log('debug patten Array:', pattern);
+}
+
+
+
+
+
+
+
+
+function Main() {
+    startGame()
+    //Generate Sequence 
+    GeneratePattern(5);
 
 }
 
-}
-GeneratePattern(5);
+
+Main()
