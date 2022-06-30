@@ -1,0 +1,40 @@
+
+
+
+What I've learned from this project
+
+- Struggles with the invocation of Event listeners seemed to be the theme of the project
+
+- With the event listeners instead of wrapping them within functions I should basically make them the main event of the project game loop
+
+- ie functions such as, playSound, animateButtons, nextSequence should be split off into their own separate functions
+
+-But our event listeners will be the first things to be invoked
+- within the call backs for the event listeners is where our regular functions will live
+
+
+CheckAnswer
+	Correct Answer
+		-
+	Wrong Answer
+		- play failure sound
+		- change the visuals of the background
+		- change the title text to (Gameover)
+		- remove of visual changes after setTimeout()
+		- invoke RestartGame()	
+
+
+
+
+Restarting Game: on Game over
+	- To restart our game we are settings all our game variables to there initial starting values
+
+	- playersPattern Array = [], gamePattern =[], levelCount = 0, 
+
+	-Most Importantly our 'GameOn' = false; 
+
+Implications of reverting our 'gameOn' state to False
+	- Game state equal false, puts the power back to our Initial event listener
+	- Now the condition to begin the game from sratch can be satisfied 
+	
+		
