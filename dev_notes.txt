@@ -1,17 +1,34 @@
 
 
+						Simons Game Development Notes 
+							Alexander Jenkins
 
-What I've learned from this project
+Event Listeners
+	startGame EVENT
+		-Initial keydown listener, 
+		-waiting for keydown, if event is detected	 and the gameOn is false the game will in essence begin
+	
+	Button click EVENT
+		-waiting for a 'click'EVENT 
+		-When an event is detected fetch the id of tile clicked
+		-then we will Append that selection to PLayersPattern Array
+		-Play sound of tile 
+		-Animate tile selection 
+		-Invoke the CheckAnswer() function
+		-from there the player will either continue to the next sequence or the game will be over
 
-- Struggles with the invocation of Event listeners seemed to be the theme of the project
+NextSequence 
+	-To begin the next sequence we need the players 'pattern' to be empty. So we reassign the array to be empty
+		-playerpatten =[]
 
-- With the event listeners instead of wrapping them within functions I should basically make them the main event of the project game loop
-
-- ie functions such as, playSound, animateButtons, nextSequence should be split off into their own separate functions
-
--But our event listeners will be the first things to be invoked
-- within the call backs for the event listeners is where our regular functions will live
-
+	-We need to increment the level/round and display it user
+		-level ++
+	-Choose a random title to be added to our 'gamePattern' Array
+		-randomChoice
+		-gamepattern.push(randomchoice)
+	-animate new tile as a visual que, to identify the next tile the player needs to remember
+		-randomTileChoice.fadein().fadeout().fadein()
+	-play sound of tile
 
 CheckAnswer
 	Correct Answer
@@ -23,9 +40,6 @@ CheckAnswer
 		- remove of visual changes after setTimeout()
 		- invoke RestartGame()	
 
-
-
-
 Restarting Game: on Game over
 	- To restart our game we are settings all our game variables to there initial starting values
 
@@ -36,5 +50,27 @@ Restarting Game: on Game over
 Implications of reverting our 'gameOn' state to False
 	- Game state equal false, puts the power back to our Initial event listener
 	- Now the condition to begin the game from sratch can be satisfied 
+
+
+AnimateButton
+	- Inputs: takes the current 'tile' as input
+	- using query, we add the 'pressed' css style
+	- using setTimeout() we than remove the css style
+PlaySound
+	- Inputs: Takes the current 'tile' as input
+	- we create a new Audio object using our input to create the path to our audio sound
+	- play said sound
 	
 		
+
+What I've learned from this project
+
+- Struggles with the invocation of Event listeners seemed to be the theme of the project
+
+- With the event listeners instead of wrapping them within functions I should basically make them the main event of the project game loop
+
+- ie functions such as, playSound, animateButtons, nextSequence should be split off into their own separate functions
+
+-But our event listeners will be the first things to be invoked
+
+- within the call backs for the event listeners is where our regular functions will live
